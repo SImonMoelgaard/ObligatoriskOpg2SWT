@@ -6,7 +6,7 @@ namespace Nunit.TestProject
     {
         [SetUp]
         public void Setup()
-        {
+        {//
         }
 
         [Test]
