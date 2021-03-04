@@ -8,7 +8,7 @@
   <ItemGroup>
     <PackageReference Include="NSubstitute" Version="4.2.2" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.17.0" />
-    <PackageReference Include="XunitXml.TestLogger" Version="3.0.62" />
+    <PackageReference Include="NunitXml.TestLogger" Version="3.0.91" />
   </ItemGroup>
 
   <ItemGroup>
