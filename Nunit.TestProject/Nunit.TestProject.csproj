@@ -14,4 +14,9 @@
     <PackageReference Include="XunitXml.TestLogger" Version="3.0.62" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ClassLibrary\ClassLibrary.csproj" />
+    <ProjectReference Include="..\Consoleapplication\Consoleapplication.csproj" />
+  </ItemGroup>
+
 </Project>
