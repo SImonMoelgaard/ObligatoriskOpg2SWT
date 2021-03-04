@@ -8,6 +8,14 @@ namespace Consoleapplication
         {
             Console.WriteLine("Fuck you");
             Console.WriteLine("NAJ");
+
+
+
+        }
+
+        public void test()
+        {
+
         }
     }
 }
