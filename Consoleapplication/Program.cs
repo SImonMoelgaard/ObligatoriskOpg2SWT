@@ -10,9 +10,15 @@
             do
             {
                 string input;
+                Console.WriteLine("E --- Exit");
+                Console.WriteLine("O --- Open Door");
+                Console.WriteLine("C --- Close Door");
+                Console.WriteLine("R --- ");
                 System.Console.WriteLine("Indtast E, O, C, R: ");
                 input = Console.ReadLine();
                 if (string.IsNullOrEmpty(input)) continue;
+
+                
 
                 switch (input[0])
                 {
