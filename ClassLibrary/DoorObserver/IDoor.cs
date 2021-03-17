@@ -16,7 +16,7 @@ namespace ClassLibrary.DoorObserver
         event EventHandler<DoorChangedEventArgs> DoorChangedEvent; 
 
         // Direct access to the current current value
-        bool isDoorOpen { get;  }
+        bool isDoorOpen { get; set; }
 
         void DoorClose();
 

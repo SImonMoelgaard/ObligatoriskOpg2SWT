@@ -7,10 +7,7 @@ namespace ClassLibrary.Logging
     public  interface ILogging
     {
 
-        public int ID { get; set; }
-        void LogDoorLocked(int id);
-
-        void LogDoorUnlocked(int id);
+        public void Log(string message, DateTime timestamp);
 
 
     }

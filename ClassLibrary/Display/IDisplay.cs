@@ -6,12 +6,6 @@ namespace ClassLibrary
 {
     public interface IDisplay
     {
-        void PrintConnectPhone();
-
-        void PrintLoadRFID();
-        void PrintConnectionFailure();
-        void PrintCharging();
-        void PrintRFIDFail();
-        void PrintRemovePhone();
+        void PrintMessage(string message);
     }
 }

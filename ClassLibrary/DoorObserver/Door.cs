@@ -12,16 +12,17 @@ namespace ClassLibrary
     {
         private IDisplay _display = new Display.Display();
         public event EventHandler<DoorChangedEventArgs> DoorChangedEvent;
-        public bool isDoorOpen { get; }
+        public bool isDoorOpen { get; set; }
+        
         public void DoorClose()
         {
-            _display.PrintLoadRFID();
-            
+            isDoorOpen = false;
+
         }
 
         public void DoorOpen()
         {
-            _display.PrintConnectPhone();
+            isDoorOpen = true;
         }
         private void OnNewDoorState()
         {
