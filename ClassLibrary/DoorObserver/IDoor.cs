@@ -9,17 +9,21 @@ namespace ClassLibrary.DoorObserver
     public class DoorChangedEventArgs : EventArgs
     {
         // Value in mA (milliAmpere)
-        public bool CurrentDoorEvent { set; get; }
+        public bool HasClosed { set; get; }
     }
     public interface IDoor
     {
         event EventHandler<DoorChangedEventArgs> DoorChangedEvent; 
 
         // Direct access to the current current value
-        bool isDoorOpen { get; set; }
+        public bool isDoorClosed { get; set; }
+        public bool IsDoorLocked { get; set; }
 
-        void DoorClose();
+        public void CloseDoor();
 
-        void DoorOpen();
+        public void OpenDoor();
+
+       public void LockDoor();
+        public void UnlockDoor();
     }
 }

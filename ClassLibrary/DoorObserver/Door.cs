@@ -12,21 +12,60 @@ namespace ClassLibrary
     {
         private IDisplay _display = new Display.Display();
         public event EventHandler<DoorChangedEventArgs> DoorChangedEvent;
-        public bool isDoorOpen { get; set; }
+        public bool isDoorClosed { get; set; }
+        public bool IsDoorLocked { get; set; }
         
-        public void DoorClose()
+
+
+        public Door()
         {
-            isDoorOpen = false;
+            IsDoorLocked = true;
+            isDoorClosed = true;
+        }
+
+        public void CloseDoor()
+        {
+            if (!isDoorClosed)
+            {
+                isDoorClosed = true;
+                Console.WriteLine("(Handling): Dør lukket");
+                OnNewDoorState(new DoorChangedEventArgs { HasClosed = true });
+            }
+        }
+
+        public void OpenDoor()
+        {
+            if (!IsDoorLocked && isDoorClosed)
+            {
+                isDoorClosed = false;
+                Console.WriteLine("(Handling): Dør åben");
+                OnNewDoorState(new DoorChangedEventArgs { HasClosed = false });
+            }
+            
+        }
+
+        public void LockDoor()
+        {
+            if (!IsDoorLocked && isDoorClosed)
+            {
+                IsDoorLocked = true;
+                Console.WriteLine("(Handling): Dør låst");
+            }
 
         }
 
-        public void DoorOpen()
+        public void UnlockDoor()
         {
-            isDoorOpen = true;
+            if (IsDoorLocked)
+            {
+                IsDoorLocked = false;
+                Console.WriteLine("(Handling): Dør låst op");
+            }
+
         }
-        private void OnNewDoorState()
+        private void OnNewDoorState(DoorChangedEventArgs e)
         {
-            DoorChangedEvent?.Invoke(this, new DoorChangedEventArgs() { CurrentDoorEvent = this.isDoorOpen});
+            DoorChangedEvent?.Invoke(this, e);
             // CurrentValueEvent?.Invoke(this, new CurrentEventArgs() {Current = this.CurrentValue});
         }
     }
