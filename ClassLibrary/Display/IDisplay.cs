@@ -4,7 +4,14 @@ using System.Text;
 
 namespace ClassLibrary
 {
-    class IDisplay
+    public interface IDisplay
     {
+        void PrintConnectPhone();
+
+        void PrintLoadRFID();
+        void PrintConnectionFailure();
+        void PrintCharging();
+        void PrintRFIDFail();
+        void PrintRemovePhone();
     }
 }

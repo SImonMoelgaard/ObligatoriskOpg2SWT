@@ -5,25 +5,27 @@ using ClassLibrary.DoorObserver;
 
 
 
+
 namespace ClassLibrary
 {
     public class Door : IDoor
     {
-        
-        public event EventHandler<IDoor.DoorChangedEventArgs> DoorChangedEvent;
+        private IDisplay _display = new Display.Display();
+        public event EventHandler<DoorChangedEventArgs> DoorChangedEvent;
         public bool isDoorOpen { get; }
-        public void OnDoorClose()
+        public void DoorClose()
         {
-            throw new NotImplementedException();
+            _display.PrintLoadRFID();
+            
         }
 
-        public void OnDoorOpen()
+        public void DoorOpen()
         {
-            throw new NotImplementedException();
+            _display.PrintConnectPhone();
         }
-        private void OnNewCurrent()
+        private void OnNewDoorState()
         {
-            DoorChangedEvent?.Invoke(this, new DoorChangedEventArgs() { is = this.CurrentValue });
+            DoorChangedEvent?.Invoke(this, new DoorChangedEventArgs() { CurrentDoorEvent = this.isDoorOpen});
             // CurrentValueEvent?.Invoke(this, new CurrentEventArgs() {Current = this.CurrentValue});
         }
     }

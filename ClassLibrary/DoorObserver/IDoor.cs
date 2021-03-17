@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Channels;
+
 
 namespace ClassLibrary.DoorObserver
 {
@@ -11,13 +13,13 @@ namespace ClassLibrary.DoorObserver
     }
     public interface IDoor
     {
-        
+        event EventHandler<DoorChangedEventArgs> DoorChangedEvent; 
 
         // Direct access to the current current value
-        bool isDoorOpen { get; }
+        bool isDoorOpen { get;  }
 
-        void OnDoorClose();
+        void DoorClose();
 
-        void OnDoorOpen();
+        void DoorOpen();
     }
 }
