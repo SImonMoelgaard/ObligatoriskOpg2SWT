@@ -6,20 +6,16 @@ namespace ClassLibrary.RFIDObserver
 {
 
 
-    public class RFIDChangedEventArgs : EventArgs
-    {
-        // Value in mA (milliAmpere)
-        public int CurrentRFIDEvent { set; get; }
-    }
+    
     public interface IRFIDReader
     {
        
-        event EventHandler<RFIDChangedEventArgs> RfidChangedEvent;
+        event EventHandler<RFIDEventArgs> RfidChangedEvent;
 
         // Direct access to the current current value
-        int RFID { get; set; }
+        public int CardID { get; set; }
 
-        void RFIDDetected(int id);
+        
 
 
     }

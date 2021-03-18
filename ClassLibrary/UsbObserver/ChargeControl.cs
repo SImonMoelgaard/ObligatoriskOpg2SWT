@@ -11,7 +11,7 @@ namespace ClassLibrary.UsbObserver
         
 
         public double Watt { get; set; }
-        private IUsbCharger _charger;
+        private IUsbCharger _charger { get; set; }
 
         public ChargeControl(IUsbCharger charger)
         {

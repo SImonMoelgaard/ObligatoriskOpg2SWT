@@ -6,14 +6,10 @@ using System.Threading.Channels;
 
 namespace ClassLibrary.DoorObserver
 {
-    public class DoorChangedEventArgs : EventArgs
-    {
-        // Value in mA (milliAmpere)
-        public bool HasClosed { set; get; }
-    }
+    
     public interface IDoor
     {
-        event EventHandler<DoorChangedEventArgs> DoorChangedEvent; 
+        public event EventHandler<DoorStatusEventArgs> DoorChangedEvent; 
 
         // Direct access to the current current value
         public bool isDoorClosed { get; set; }
