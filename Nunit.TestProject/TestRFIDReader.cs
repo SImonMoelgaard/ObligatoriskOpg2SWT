@@ -42,7 +42,7 @@ namespace Nunit.TestProject
            // int lastRFID = 0;
 
 
-           _uut.RfidChangedEvent += (sender, args) => args.Id;
+          
            Assert.That(_uut.CardID, Is.Zero);
         }
     }
