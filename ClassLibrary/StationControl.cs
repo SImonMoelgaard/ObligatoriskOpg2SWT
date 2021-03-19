@@ -31,7 +31,7 @@ namespace Ladeskab
         public double Watt { get; set; }
         private bool doorIsLocked;
         private int rfidID;
-        private bool charging = false;
+        public bool charging = false;
         
         public ChargingStationState state
         {
@@ -146,10 +146,8 @@ namespace Ladeskab
                         {
                             message = "Indlæs RFID";
                             doorIsLocked = true;
-                            //_door.LockDoor();
-                            //_chargeControl.StartCharging();
                             _state = ChargingStationState.Available;
-                            //message = "Starter ladning";
+                            
                         }
                         else
                         {

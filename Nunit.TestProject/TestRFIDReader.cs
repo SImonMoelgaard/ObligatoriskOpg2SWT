@@ -28,7 +28,7 @@ namespace Nunit.TestProject
         }
 
         [Test]
-        public void NewRFIDSet()
+        public void RFIDGet()
         {
             _uut.CardID = 10;
             
