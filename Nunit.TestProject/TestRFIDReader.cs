@@ -30,14 +30,17 @@ namespace Nunit.TestProject
             double lastRFID = 88888888;
             _uut.RfidChangedEvent += (sender, args) => lastRFID = args.Id;
 
-
+            Assert.That(lastRFID, Is.EqualTo(88888888));
         }
 
         [Test]
         public void RFIDEventLower()
         {
-            double lastRFID = 88888888;
-            _uut.RfidChangedEvent += (sender, args) => lastRFID++;
+           // int lastRFID = 0;
+            
+            
+           // _uut.RfidChangedEvent += (sender, args) => args.Id=lastRFID;
+           Assert.That(_uut.CardID, Is.Zero);
         }
     }
 }
