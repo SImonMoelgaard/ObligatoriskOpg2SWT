@@ -129,6 +129,7 @@ namespace Nunit.TestProject
             _display.Received(1).PrintMessage("ID godkendt: 1 Ladning stoppet. Fjern telefon");
 
         }
+        [Test]
         public void UnlockCheck_Ischarging_ID_oldID_Wrong()
         {
             _uut.oldID = 2;
@@ -138,7 +139,7 @@ namespace Nunit.TestProject
 
             //_UsbCharger.Connected = true;
 
-            _RFID.RfidChangedEvent += Raise.EventWith(this, new RFIDEventArgs() { Id = _uut.oldID });
+            _RFID.RfidChangedEvent += Raise.EventWith(this, new RFIDEventArgs() { Id = 1 });
             _display.Received(1).PrintMessage("RFID fejl. Prøv igen");
 
         }
