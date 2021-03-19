@@ -168,6 +168,28 @@ namespace Nunit.TestProject
         }
 
         [Test]
+        public void TEstOldIDGet()
+        {
+            _uut.oldID = 10;
+
+            Assert.That(_uut.oldID, Is.EqualTo(10));
+        }
+
+        [Test]
+        public void TestGetChargingstationState()
+        {
+            
+            Assert.That(_uut.charging, Is.EqualTo(false));
+        }
+
+        [Test]
+        public void SetDatetime()
+        {
+            _uut.TimeStamp = DateTime.Today;
+            Assert.That(_uut.TimeStamp, Is.EqualTo(DateTime.Today));
+        }
+
+        [Test]
         public void WattGet()
         {
             
