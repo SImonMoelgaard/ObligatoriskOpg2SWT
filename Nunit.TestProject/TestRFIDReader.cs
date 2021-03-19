@@ -25,12 +25,19 @@ namespace Nunit.TestProject
         }
 
         [Test]
-        public void RFIDEvent()
+        public void RFIDEventHigher()
         {
             double lastRFID = 88888888;
             _uut.RfidChangedEvent += (sender, args) => lastRFID = args.Id;
 
 
+        }
+
+        [Test]
+        public void RFIDEventLower()
+        {
+            double lastRFID = 88888888;
+            _uut.RfidChangedEvent += (sender, args) => lastRFID++;
         }
     }
 }
