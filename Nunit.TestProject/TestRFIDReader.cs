@@ -33,7 +33,7 @@ namespace Nunit.TestProject
             _uut.CardID = 10;
             
 
-            Assert.That(RFIDEvent, Is.EqualTo(10));
+            Assert.That(RFIDEvent.Id, Is.EqualTo(10));
         }
 
         [Test]
