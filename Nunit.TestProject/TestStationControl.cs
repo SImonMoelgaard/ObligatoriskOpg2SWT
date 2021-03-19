@@ -138,7 +138,7 @@ namespace Nunit.TestProject
 
             //_UsbCharger.Connected = true;
 
-            _RFID.RfidChangedEvent += Raise.EventWith(this, new RFIDEventArgs() { Id = 1 });
+            _RFID.RfidChangedEvent += Raise.EventWith(this, new RFIDEventArgs() { Id = _uut.oldID });
             _display.Received(1).PrintMessage("RFID fejl. Prøv igen");
 
         }
