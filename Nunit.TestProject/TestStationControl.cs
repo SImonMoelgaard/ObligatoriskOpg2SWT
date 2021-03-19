@@ -55,6 +55,7 @@ namespace Nunit.TestProject
         [Test]
         public void DoorIsClosed_UsbChargerNotConnected()
         {
+            _uut.state = 
             _uut.state = StationControl.ChargingStationState.Opened;
             _UsbCharger.Connected = false;
             _door.DoorChangedEvent += Raise.EventWith(this, new DoorStatusEventArgs()
@@ -62,7 +63,7 @@ namespace Nunit.TestProject
                 IsClosed = true
             });
 
-            _display.Received(0).PrintMessage("Tilslut telefon");
+            _display.Received(1).PrintMessage("Tilslut telefon");
         }
         [Test]
         public void DoorIsOpen_PleaseConnectCharger()
@@ -74,7 +75,88 @@ namespace Nunit.TestProject
                 IsClosed = false
             });
 
-            _display.Received(0).PrintMessage("Dør åbnet.Tilslut venligst telefonen");
+            _display.Received(1).PrintMessage("Dør åbnet. Tilslut venligst telefonen");
+        }
+        //RFID Handle TEST
+        [Test]
+        public void RFID_Available_NotCharging_ConnectedChargerTest()
+        {
+            _uut.state = StationControl.ChargingStationState.Available;
+            _uut.charging = false;
+            _UsbCharger.Connected = true;
+            _door.isDoorClosed = true;
+
+            _RFID.RfidChangedEvent += Raise.EventWith(this, new RFIDEventArgs(){Id = 1});
+            _display.Received(1).PrintMessage("ID: 1: Låser dør og starter ladning - Ladeskab optaget");
+        }
+
+        [Test]
+        public void RFID_Available_NotCharging_NotConnectedChargerTest()
+        {
+            _uut.state = StationControl.ChargingStationState.Available;
+            _uut.charging = false;
+            _UsbCharger.Connected =false;
+            _door.isDoorClosed = true;
+
+            _RFID.RfidChangedEvent += Raise.EventWith(this, new RFIDEventArgs() { Id = 1 });
+            _display.Received(1).PrintMessage("Tilslutningsfejl. Sørg for at telefonen er tilsluttet");
+        }
+
+        [Test]
+        public void RFID_Available_NotCharging_DoorOpen()
+        {
+            _uut.charging = false;
+            _uut.state = StationControl.ChargingStationState.Available;
+            _door.isDoorClosed = false;
+            _UsbCharger.Connected = false;
+            //_UsbCharger.Connected = true;
+
+            _RFID.RfidChangedEvent += Raise.EventWith(this, new RFIDEventArgs() { Id = 1 });
+            _display.Received(1).PrintMessage("Luk døren først");
+        }
+
+        [Test]
+        public void UnlockCheck_Ischarging_ID_oldID_right()
+        {
+            _uut.oldID = 1;
+            _uut.charging = true;
+            _uut.state = StationControl.ChargingStationState.Available;
+            
+            
+            //_UsbCharger.Connected = true;
+
+            _RFID.RfidChangedEvent += Raise.EventWith(this, new RFIDEventArgs() { Id =1 });
+            _display.Received(1).PrintMessage("ID godkendt: 1 Ladning stoppet. Fjern telefon");
+
+        }
+        public void UnlockCheck_Ischarging_ID_oldID_Wrong()
+        {
+            _uut.oldID = 2;
+            _uut.charging = true;
+            _uut.state = StationControl.ChargingStationState.Available;
+
+
+            //_UsbCharger.Connected = true;
+
+            _RFID.RfidChangedEvent += Raise.EventWith(this, new RFIDEventArgs() { Id = 1 });
+            _display.Received(1).PrintMessage("RFID fejl. Prøv igen");
+
+        }
+
+        //Test af ChargerHandle
+        [Test]
+        public void ChargingPhone_Done()
+        {
+
+            _UsbCharger.CurrentValueEvent += Raise.EventWith(this, new CurrentEventArgs() {Current = 5});
+            _display.Received(1).PrintMessage("Telefon opladet");
+        }
+        [Test]
+        public void ChargingPhone()
+        {
+
+            _UsbCharger.CurrentValueEvent += Raise.EventWith(this, new CurrentEventArgs() { Current = 6 });
+            _display.Received(1).PrintMessage("Telefon oplader");
         }
 
 

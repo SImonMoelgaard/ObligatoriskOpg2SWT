@@ -30,7 +30,7 @@ namespace Ladeskab
         public DateTime TimeStamp { get; set; }
         public double Watt { get; set; }
         private bool doorIsLocked;
-        private int rfidID;
+        
         public bool charging = false;
         
         public ChargingStationState state
@@ -85,7 +85,7 @@ namespace Ladeskab
 
             if (_state== ChargingStationState.Available && charging ==false)
             {
-                if (_usbCharger.Connected)
+                if (_usbCharger.Connected&& _door.isDoorClosed)
                 {
                     message = $"ID: {rfid.Id}: Låser dør og starter ladning - Ladeskab optaget";
                     _display.PrintMessage(message);
@@ -97,16 +97,17 @@ namespace Ladeskab
                     charging = true;
 
                 }
-                
-                else if (_usbCharger.Connected==false)
+                else if (!_door.isDoorClosed)
+                {
+                    message = "Luk døren først";
+                    _display.PrintMessage(message);
+                }
+                else if (_usbCharger.Connected==false && _door.isDoorClosed)
                 {
                     message = "Tilslutningsfejl. Sørg for at telefonen er tilsluttet";
                     _display.PrintMessage(message);
                 }
-                else if (_door.isDoorClosed ==false)
-                {
-                    message = "Luk døren før indlæsning af RFID";
-                }
+                
 
 
             }
@@ -147,11 +148,12 @@ namespace Ladeskab
                             message = "Indlæs RFID";
                             doorIsLocked = true;
                             _state = ChargingStationState.Available;
-                            
+                            _display.PrintMessage(message);
                         }
                         else
                         {
-                            message = "Tilsut telefon";
+                            message = "Tilslut telefon";
+                            _display.PrintMessage(message);
                         }
 
                     } ;
@@ -159,10 +161,11 @@ namespace Ladeskab
                 case false:
                     _state = ChargingStationState.Opened;
                     message = "Dør åbnet. Tilslut venligst telefonen";
+                    _display.PrintMessage(message);
                     break;
                 
             }
-            _display.PrintMessage(message);
+            
 
         }
 
