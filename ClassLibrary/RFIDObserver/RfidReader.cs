@@ -29,10 +29,6 @@ namespace ClassLibrary
             }
         }
         
-
-       
-       
-
         protected  virtual void OnNewRFIDState(RFIDEventArgs e)
         {
             RfidChangedEvent?.Invoke(this, e);
