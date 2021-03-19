@@ -1,5 +1,6 @@
 using ClassLibrary;
 using ClassLibrary.RFIDObserver;
+using NSubstitute;
 using NUnit.Framework;
 
 namespace Nunit.TestProject
@@ -17,8 +18,19 @@ namespace Nunit.TestProject
         [Test]
         public void CtorRFID()
         {
-            Assert.That(_uut.CardID == 88888888);
-            
+            _uut.CardID = 10;
+            Assert.That(_uut.CardID == 10);
+
+
+        }
+
+        [Test]
+        public void RFIDEvent()
+        {
+            double lastRFID = 88888888;
+            _uut.RfidChangedEvent += (sender, args) => lastRFID = args.Id;
+
+
         }
     }
 }
