@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Text;
 using ClassLibrary;
 using ClassLibrary.DoorObserver;
@@ -180,7 +181,8 @@ namespace Nunit.TestProject
         public void TestGetChargingstationState()
         {
             
-            Assert.That(_uut.charging, Is.EqualTo(false));
+            _uut.state = StationControl.ChargingStationState.Available;
+            Assert.That(_uut.state, Is.EqualTo(StationControl.ChargingStationState.Available));
         }
 
         [Test]
@@ -190,10 +192,6 @@ namespace Nunit.TestProject
             Assert.That(_uut.TimeStamp, Is.EqualTo(DateTime.Today));
         }
 
-        [Test]
-        public void WattGet()
-        {
-            
-        }
+
     }
 }
