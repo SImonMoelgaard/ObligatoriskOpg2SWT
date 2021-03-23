@@ -15,7 +15,7 @@ namespace Nunit.TestProject
         [SetUp]
         public void Setup()
         { 
-            var log = Substitute.For<ILogging>();
+             log = Substitute.For<ILogging>();
         }
 
         [Test]
@@ -38,7 +38,7 @@ namespace Nunit.TestProject
         public void LogTest()
         {
             log.Log(DateTime.Now, 1, "2");
-            log.Received(1);
+            log.Received(3);
             //_uut.Log(DateTime.Now, 1, "2");
             //Assert.Pass();
 
