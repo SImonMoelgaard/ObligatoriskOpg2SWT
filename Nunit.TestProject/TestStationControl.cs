@@ -174,7 +174,7 @@ namespace Nunit.TestProject
         {
             _uut.oldID = 5;
 
-            Assert.That(_uut.oldID, Is.EqualTo(10));
+            Assert.That(_uut.oldID, Is.EqualTo(5));
         }
 
         [Test]
