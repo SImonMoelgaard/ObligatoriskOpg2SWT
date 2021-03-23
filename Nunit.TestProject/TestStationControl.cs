@@ -166,8 +166,8 @@ namespace Nunit.TestProject
         public void ChargingPhonetest()
         {
 
-            _UsbCharger.CurrentValueEvent += Raise.EventWith(this, new CurrentEventArgs() { Current = 4 });
-            Assert.That(_uut.Watt, Is.EqualTo(4));
+            _UsbCharger.CurrentValueEvent += Raise.EventWith(this, new CurrentEventArgs() { Current = 550 });
+            Assert.That(_uut.Watt, Is.EqualTo(550));
         }
 
         [Test]
