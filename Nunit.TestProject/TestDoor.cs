@@ -24,7 +24,15 @@ namespace Nunit.TestProject
         {
             _uut.isDoorClosed = false;
             _uut.CloseDoor();
-            Assert.That(_uut.isDoorClosed=true);
+            Assert.That(_uut.isDoorClosed, Is.EqualTo(true));
+        }
+
+        [Test]
+        public void OpenDoor()
+        {
+            _uut.isDoorClosed = true;
+            _uut.OpenDoor();
+            Assert.That(_uut.isDoorClosed, Is.EqualTo(false) );
         }
 
         [Test]
