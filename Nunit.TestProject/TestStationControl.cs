@@ -12,6 +12,7 @@ using Ladeskab;
 using NUnit.Framework;
 using UsbSimulator;
 using NSubstitute;
+using NUnit.Framework.Internal;
 
 namespace Nunit.TestProject
 {
@@ -77,6 +78,18 @@ namespace Nunit.TestProject
             });
 
             _display.Received(1).PrintMessage("Dør åbnet. Tilslut venligst telefonen");
+        }
+
+        [Test]
+        public void DoorIsOpen_PhoneConnected()
+        {
+            _uut.state = StationControl.ChargingStationState.Opened;
+            _UsbCharger.Connected = true;
+            _door.DoorChangedEvent += Raise.EventWith(this, new DoorStatusEventArgs()
+            {
+                IsClosed = false
+            });
+            _display.Received(1).PrintMessage("Dør åbnet. Luk døren først");
         }
         //RFID Handle TEST
         [Test]
