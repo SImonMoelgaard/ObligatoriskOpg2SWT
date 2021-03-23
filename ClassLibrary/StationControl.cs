@@ -27,7 +27,7 @@ namespace Ladeskab
         private int _oldID;
         private string message = "";
 
-        public DateTime TimeStamp { get; private set; }
+        public DateTime TimeStamp { get; set; }
         public double Watt { get; set; }
         private bool doorIsLocked;
         
