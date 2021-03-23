@@ -212,6 +212,16 @@ namespace UsbSimulator.Test
         }
 
         [Test]
+        public void TestPhoneConnected()
+        {
+            double lastValue = 5;
+            _uut.CurrentValueEvent += (o, args) => lastValue = args.Current;
+            
+        }
+
+
+
+        [Test]
         public void StopCharge_IsCharging_ReceivesNoMoreValues()
         {
             double lastValue = 1000;
@@ -230,8 +240,8 @@ namespace UsbSimulator.Test
             // No new value received
             Assert.That(lastValue, Is.EqualTo(1000.0));
         }
-
-
+       
+        
 
     }
 }

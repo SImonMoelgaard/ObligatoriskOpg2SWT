@@ -30,10 +30,7 @@ namespace ClassLibrary.UsbObserver
             _charger.StopCharge();
         }
 
-        public bool PhoneConnected()
-        {
-            return _charger.Connected;
-        }
+      
 
         public void ChargeHandleEvent(object sender, CurrentEventArgs chargingEvent)
         {
