@@ -22,7 +22,6 @@ namespace Nunit.TestProject
 
         }
 
-
         [Test]
         public void ConsolePrint()
         {

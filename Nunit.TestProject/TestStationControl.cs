@@ -28,7 +28,7 @@ namespace Nunit.TestProject
         private ChargeControl _CC;
 
         [SetUp]
-        public void setup()
+        public void Setup()
         {
             _display = Substitute.For<IDisplay>();
             _door = Substitute.For<IDoor>();

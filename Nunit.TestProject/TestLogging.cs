@@ -17,10 +17,7 @@ namespace Nunit.TestProject
         [SetUp]
         public void Setup()
         {
-            if (File.Exists(logFileName))
-            {
-                File.Delete(logFileName);
-            }
+           
             // log = Substitute.For<Logging>();
              //file = Substitute.For<ILogFile>();
               _uut= new Logging();
@@ -63,6 +60,11 @@ namespace Nunit.TestProject
         [Test]
         public void WriteToFile()
         {
+
+            if (File.Exists(logFileName))
+            {
+                File.Delete(logFileName);
+            }
 
             _uut.Log(DateTime.Today, 1, "test");
 
