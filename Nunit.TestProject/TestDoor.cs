@@ -36,10 +36,27 @@ namespace Nunit.TestProject
         }
 
         [Test]
-        public void getDoor()
+        public void GetDoor()
         {
             _uut.IsDoorLocked = false;
             Assert.That(_uut.IsDoorLocked, Is.EqualTo(false));
         }
+
+        [Test]
+        public void LockDoor()
+        {
+            _uut.IsDoorLocked = false;
+            _uut.isDoorClosed = true;
+            _uut.LockDoor();
+            Assert.That(_uut.IsDoorLocked, Is.EqualTo(true));
+        }
+        [Test]
+        public void UnlockDoor()
+        {
+            _uut.IsDoorLocked = true;
+            _uut.UnlockDoor();
+            Assert.That(_uut.IsDoorLocked, Is.EqualTo(false));
+        }
+
     }
 }
