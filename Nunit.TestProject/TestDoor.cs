@@ -31,7 +31,7 @@ namespace Nunit.TestProject
         public void getDoor()
         {
             _uut.IsDoorLocked = false;
-            Assert.That(_uut.IsDoorLocked = false);
+            Assert.That(_uut.IsDoorLocked, Is.EqualTo(false));
         }
     }
 }
