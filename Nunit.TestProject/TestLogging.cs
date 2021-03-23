@@ -40,11 +40,11 @@ namespace Nunit.TestProject
             var log = Substitute.For<ILogging>();
             log.Log(DateTime.Now, 1, "2");
 
-            log.ReceivedWithAnyArgs(1);
+            log.ReceivedWithAnyArgs(1).Log(default, default, default);
             //_uut.Log(DateTime.Now, 1, "2");
             //Assert.Pass();
 
-            
+
         }
     }
 }
