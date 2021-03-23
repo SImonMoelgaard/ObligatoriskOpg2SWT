@@ -19,17 +19,17 @@ namespace Nunit.TestProject
         }
 
         [Test]
-        public void Log()
+        public void LogUnlock()
         {
 
             var counter = 0;
             
             
-            log.When(x => x.Log(DateTime.Today, 1, "2")).Do(x => counter++);
+            log.When(x => x.LogUnlocked(DateTime.Today, 1)).Do(x => counter++);
             //string testString = "Message";
 
-            log.Log(DateTime.Today, 1, "2");
-            log.Log(DateTime.Today, 1, "2");
+            log.LogUnlocked(DateTime.Today, 1);
+            log.LogUnlocked(DateTime.Today, 1);
             
             Assert.AreEqual(2, counter);
         }
@@ -37,11 +37,11 @@ namespace Nunit.TestProject
         [Test]
         public void LogTest()
         {
-            log.Log(DateTime.Now, 1, "2");
-            log.Received(3);
+            log.LogUnlocked(DateTime.Now, 1);
+            log.Received(1);
             //_uut.Log(DateTime.Now, 1, "2");
             //Assert.Pass();
-
+            
 
         }
     }

@@ -7,7 +7,8 @@ namespace ClassLibrary.Logging
     public  interface ILogging
     {
 
-        void Log(DateTime timestamp, int id, string message);
+        void LogLocked(DateTime timestamp, int id);
+        void LogUnlocked(DateTime timestamp, int id);
 
 
     }
