@@ -12,7 +12,7 @@ namespace ClassLibrary.RFIDObserver
        
         event EventHandler<RFIDEventArgs> RfidChangedEvent;
 
-        // Direct access to the current current value
+        
         public int CardID { get; set; }
 
         

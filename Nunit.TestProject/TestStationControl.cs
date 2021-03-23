@@ -57,7 +57,6 @@ namespace Nunit.TestProject
         [Test]
         public void DoorIsClosed_UsbChargerNotConnected()
         {
-            _uut.state = 
             _uut.state = StationControl.ChargingStationState.Opened;
             _UsbCharger.Connected = false;
             _door.DoorChangedEvent += Raise.EventWith(this, new DoorStatusEventArgs()
@@ -198,7 +197,7 @@ namespace Nunit.TestProject
         public void SetDatetime()
         {
             DateTime testtime = new DateTime(2020, 12, 24, 18, 30, 0);
-            _uut.TimeStamp = new DateTime(2020, 12, 24, 18, 30, 0);
+            _uut.TimeStamp = testtime;
             Assert.That(_uut.TimeStamp, Is.EqualTo(testtime));
         }
 
