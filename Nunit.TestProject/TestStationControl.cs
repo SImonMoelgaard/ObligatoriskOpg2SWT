@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Runtime.CompilerServices;
 using System.Text;
 using ClassLibrary;
@@ -196,8 +197,9 @@ namespace Nunit.TestProject
         [Test]
         public void SetDatetime()
         {
-            _uut.TimeStamp = DateTime.Today;
-            Assert.That(_uut.TimeStamp, Is.EqualTo(DateTime.Today));
+            DateTime testtime = new DateTime(2020, 12, 24, 18, 30, 0);
+            _uut.TimeStamp = new DateTime(2020, 12, 24, 18, 30, 0);
+            Assert.That(_uut.TimeStamp, Is.EqualTo(testtime));
         }
 
 
