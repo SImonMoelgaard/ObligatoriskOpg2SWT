@@ -6,42 +6,73 @@ using System.Text;
 using ClassLibrary.Logging;
 using NSubstitute;
 using NUnit.Framework;
+using NUnit.Framework.Internal;
 
 namespace Nunit.TestProject
 {
     public class TestLogging
     {
-        private ILogging log;
+        private Logging _uut;
+        private string logFileName = "logfile.txt";
         [SetUp]
         public void Setup()
-        { 
-             log = Substitute.For<ILogging>();
+        {
+            if (File.Exists(logFileName))
+            {
+                File.Delete(logFileName);
+            }
+            // log = Substitute.For<Logging>();
+             //file = Substitute.For<ILogFile>();
+              _uut= new Logging();
+
+              
+
         }
 
         [Test]
-        public void LogUnlock()
+        public void CanItRunMoreThanOnce()
         {
-
+           ILogging uut = Substitute.For<ILogging>();
             var counter = 0;
-            
-            
-            log.When(x => x.LogUnlocked(DateTime.Today, 1)).Do(x => counter++);
-            //string testString = "Message";
 
-            log.LogUnlocked(DateTime.Today, 1);
-            log.LogUnlocked(DateTime.Today, 1);
+            
+            uut.When(x => x.Log(DateTime.Today, 1, "Test")).Do(x => counter++);
+            
+
+            uut.Log(DateTime.Today, 1, "Test");
+            uut.Log(DateTime.Today, 1, "Test");
             
             Assert.AreEqual(2, counter);
         }
 
         [Test]
-        public void LogTest()
+        public void CanLog()
         {
-            log.LogUnlocked(DateTime.Now, 1);
-            log.Received(1);
-            //_uut.Log(DateTime.Now, 1, "2");
-            //Assert.Pass();
+            Assert.DoesNotThrow(()=>_uut.Log(DateTime.Today, 1, "test"));
+        }
+
+        [Test]
+        public void FindFile()
+        {
             
+            
+            _uut.Log(DateTime.Today, 1, "Test");
+            Assert.That(File.Exists(logFileName));
+        }
+
+        [Test]
+        public void WriteToFile()
+        {
+
+            _uut.Log(DateTime.Today, 1, "test");
+
+            DateTime time = DateTime.Today;
+            string text;
+            using (StreamReader reader = new StreamReader(File.OpenRead(logFileName)))
+            {
+                text = reader.ReadLine();
+            }
+            Assert.That(text == DateTime.Today.ToString() +": "+ "1: test");
 
         }
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using ClassLibrary;
 using ClassLibrary.DoorObserver;
@@ -14,6 +15,8 @@ namespace Nunit.TestProject
         public void Setup()
         { 
             _uut = new Door();
+
+           
 
         }
 

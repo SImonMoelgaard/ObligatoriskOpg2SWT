@@ -19,6 +19,7 @@ namespace Nunit.TestProject
             _uut = new Display();
             readConsole = new StringWriter();
             System.Console.SetOut(readConsole);
+
         }
 
 
