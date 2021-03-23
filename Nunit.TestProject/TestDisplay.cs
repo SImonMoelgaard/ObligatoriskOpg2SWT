@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using ClassLibrary;
 using ClassLibrary.Display;
+using NSubstitute;
 using NUnit.Framework;
 
 namespace Nunit.TestProject
@@ -20,8 +21,19 @@ namespace Nunit.TestProject
         [Test]
         public void PrintMessage()
         {
-            string testString = "Message";
-            _uut.PrintMessage(testString);
+            var counter = 0;
+            var display = Substitute.For<IDisplay>();
+            
+            display.When(x => x.PrintMessage("Test")).Do(x => counter++);
+           
+
+            display.PrintMessage("Test");
+            display.PrintMessage("Test");
+            Assert.AreEqual(2, counter);
+            
+            
+           
+
 
         }
     }

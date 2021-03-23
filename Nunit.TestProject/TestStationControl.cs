@@ -41,7 +41,6 @@ namespace Nunit.TestProject
         }
 
         //Test af Handle Door
-
         [Test]
         public void DoorGetsClosed_UsbChargerConnected()
         {
@@ -176,7 +175,7 @@ namespace Nunit.TestProject
 
         [Test]
        
-        public void ChargingPhonetest()
+        public void WattGet()
         {
 
             _UsbCharger.CurrentValueEvent += Raise.EventWith(this, new CurrentEventArgs() { Current = 550 });
@@ -213,7 +212,7 @@ namespace Nunit.TestProject
             _uut.TimeStamp = testtime;
             Assert.That(_uut.TimeStamp, Is.EqualTo(testtime));
         }
-
+      
 
     }
 }
