@@ -161,6 +161,14 @@ namespace Nunit.TestProject
             _display.Received(1).PrintMessage("Telefon oplader");
         }
 
+        [Test]
+       
+        public void ChargingPhonetest()
+        {
+
+            _UsbCharger.CurrentValueEvent += Raise.EventWith(this, new CurrentEventArgs() { Current = 4 });
+            Assert.That(_uut.Watt, Is.EqualTo(4));
+        }
 
         [Test]
         public void WattSet()
