@@ -10,11 +10,11 @@ namespace ClassLibrary.Logging
 
         private string logFile = "logfile.txt"; // Navnet på systemets log-fil
         
-        public void Log(string message, DateTime timestamp)
+        public void Log(DateTime timestamp, int id, string message)
         {
             using (var writer = File.AppendText(logFile))
             {
-                writer.WriteLine(timestamp + " " + message);
+                writer.WriteLine(timestamp + " : " + id + " : " + message);
             }
         }
     }

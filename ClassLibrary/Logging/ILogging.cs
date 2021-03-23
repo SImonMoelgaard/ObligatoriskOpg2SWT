@@ -7,7 +7,7 @@ namespace ClassLibrary.Logging
     public  interface ILogging
     {
 
-        public void Log(string message, DateTime timestamp);
+        void Log(DateTime timestamp, int id, string message);
 
 
     }

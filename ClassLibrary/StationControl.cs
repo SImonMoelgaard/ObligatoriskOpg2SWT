@@ -90,6 +90,7 @@ namespace Ladeskab
                     message = $"ID: {rfid.Id}: Låser dør og starter ladning - Ladeskab optaget";
                     _display.PrintMessage(message);
                     _oldID = rfid.Id;
+                    _logging.Log(TimeStamp, _oldID, message);
                     _door.LockDoor();
                     _chargeControl.StartCharging();
                     
@@ -117,6 +118,7 @@ namespace Ladeskab
                 {
                     _chargeControl.StopCharging();
                     message = $"ID godkendt: {rfid.Id} Ladning stoppet. Fjern telefon";
+                    _logging.Log(TimeStamp, _oldID, message);
                     _door.UnlockDoor();
                     _state = ChargingStationState.Available;
                     _display.PrintMessage(message);
