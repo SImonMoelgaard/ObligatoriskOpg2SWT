@@ -172,7 +172,7 @@ namespace Nunit.TestProject
         [Test]
         public void TEstOldIDGet()
         {
-            _uut.oldID = 10;
+            _uut.oldID = 5;
 
             Assert.That(_uut.oldID, Is.EqualTo(10));
         }

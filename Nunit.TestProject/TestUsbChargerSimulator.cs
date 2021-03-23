@@ -211,13 +211,7 @@ namespace UsbSimulator.Test
             Assert.That(_uut.CurrentValue, Is.EqualTo(0.0));
         }
 
-        [Test]
-        public void TestPhoneConnected()
-        {
-            double lastValue = 5;
-            _uut.CurrentValueEvent += (o, args) => lastValue = args.Current;
-            
-        }
+       
 
 
 
