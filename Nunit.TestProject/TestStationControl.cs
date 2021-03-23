@@ -42,7 +42,7 @@ namespace Nunit.TestProject
         //Test af Handle Door
 
         [Test]
-        public void DoorIsClosed_UsbChargerConnected()
+        public void DoorGetsClosed_UsbChargerConnected()
         {
             _uut.state = StationControl.ChargingStationState.Opened;
             _UsbCharger.Connected = true;

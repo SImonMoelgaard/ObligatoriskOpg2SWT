@@ -157,13 +157,22 @@ namespace Ladeskab
                             message = "Tilslut telefon";
                             _display.PrintMessage(message);
                         }
-
+                        
                     } ;
                     break;
                 case false:
-                    _state = ChargingStationState.Opened;
-                    message = "Dør åbnet. Tilslut venligst telefonen";
-                    _display.PrintMessage(message);
+                    if (!_usbCharger.Connected)
+                    {
+                        _state = ChargingStationState.Opened;
+                        message = "Dør åbnet. Tilslut venligst telefonen";
+                        _display.PrintMessage(message);
+                    }
+                    else if (_usbCharger.Connected)
+                    {
+                        _state = ChargingStationState.Opened;
+                        message = "Dør åbnet. Luk døren først";
+                        _display.PrintMessage(message);
+                    }
                     break;
                 
             }
