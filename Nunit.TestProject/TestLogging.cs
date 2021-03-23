@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using System.Text;
 using ClassLibrary.Logging;
 using NSubstitute;
@@ -35,7 +36,8 @@ namespace Nunit.TestProject
         [Test]
         public void LogTest()
         {
-            
+            _uut.Log(DateTime.Now, 1, "2");
+            Assert.Pass();
         }
     }
 }

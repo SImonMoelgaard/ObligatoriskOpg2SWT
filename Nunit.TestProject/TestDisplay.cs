@@ -15,7 +15,7 @@ namespace Nunit.TestProject
         [SetUp]
         public void Setup()
         {
-            //_uut = new Display();
+            _uut = new Display();
         }
 
         [Test]
@@ -35,8 +35,10 @@ namespace Nunit.TestProject
         [Test]
         public void ConsolePrint()
         {
-            //_uut.PrintMessage("Test");
-           // Assert.Pass();
+
+            _uut.PrintMessage("test");
+            Assert.Pass();
+
         }
     }
 }
