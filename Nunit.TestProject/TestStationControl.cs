@@ -79,7 +79,6 @@ namespace Nunit.TestProject
 
             _display.Received(1).PrintMessage("Dør åbnet. Tilslut venligst telefonen");
         }
-
         [Test]
         public void DoorIsOpen_PhoneConnected()
         {
@@ -91,6 +90,7 @@ namespace Nunit.TestProject
             });
             _display.Received(1).PrintMessage("Dør åbnet. Luk døren først");
         }
+
         //RFID Handle TEST
         [Test]
         public void RFID_Available_NotCharging_ConnectedChargerTest()
