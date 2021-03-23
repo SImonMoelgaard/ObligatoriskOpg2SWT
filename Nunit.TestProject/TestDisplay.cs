@@ -21,6 +21,16 @@ namespace Nunit.TestProject
             System.Console.SetOut(readConsole);
         }
 
+
+        [Test]
+        public void ConsolePrint()
+        {
+            _uut.PrintMessage("Test");
+            var text = readConsole.ToString();
+            Assert.AreEqual("Test\r\n",text);
+
+        }
+
         [Test]
         public void PrintMessage()
         {
@@ -35,13 +45,6 @@ namespace Nunit.TestProject
             Assert.AreEqual(2, counter);
         }
 
-        [Test]
-        public void ConsolePrint()
-        {
-            _uut.PrintMessage("Test");
-            var text = readConsole.ToString();
-            Assert.AreEqual("Test\r\n",text);
-
-        }
+       
     }
 }

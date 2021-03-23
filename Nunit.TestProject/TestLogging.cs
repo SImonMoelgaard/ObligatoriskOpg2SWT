@@ -11,11 +11,11 @@ namespace Nunit.TestProject
 {
     public class TestLogging
     {
-        private ILogging _uut;
+        private ILogging log;
         [SetUp]
         public void Setup()
         { 
-            _uut = new Logging();
+            var log = Substitute.For<ILogging>();
         }
 
         [Test]
@@ -23,7 +23,7 @@ namespace Nunit.TestProject
         {
 
             var counter = 0;
-            var log = Substitute.For<ILogging>();
+            
             
             log.When(x => x.Log(DateTime.Today, 1, "2")).Do(x => counter++);
             //string testString = "Message";
@@ -37,10 +37,8 @@ namespace Nunit.TestProject
         [Test]
         public void LogTest()
         {
-            var log = Substitute.For<ILogging>();
             log.Log(DateTime.Now, 1, "2");
-
-            log.ReceivedWithAnyArgs(1).Log(default, default, default);
+            log.Received(1);
             //_uut.Log(DateTime.Now, 1, "2");
             //Assert.Pass();
 
