@@ -30,12 +30,12 @@ namespace Nunit.TestProject
             log.Log(DateTime.Today, 1, "2");
             
             Assert.AreEqual(2, counter);
-
-           
-
-            
         }
 
-
+        [Test]
+        public void LogTest()
+        {
+            
+        }
     }
 }
