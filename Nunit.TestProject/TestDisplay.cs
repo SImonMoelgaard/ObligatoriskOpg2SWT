@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using ClassLibrary;
 using ClassLibrary.Display;
@@ -11,11 +12,13 @@ namespace Nunit.TestProject
     public class TestDisplay
     {
         private IDisplay _uut;
-
+        private StringWriter readConsole;
         [SetUp]
         public void Setup()
         {
             _uut = new Display();
+            readConsole = new StringWriter();
+            System.Console.SetOut(readConsole);
         }
 
         [Test]
@@ -35,9 +38,9 @@ namespace Nunit.TestProject
         [Test]
         public void ConsolePrint()
         {
-
-            _uut.PrintMessage("test");
-            Assert.Pass();
+            _uut.PrintMessage("Test");
+            var text = readConsole.ToString();
+            Assert.AreEqual("Test\r\n",text);
 
         }
     }
