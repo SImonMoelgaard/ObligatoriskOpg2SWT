@@ -21,27 +21,9 @@ namespace Nunit.TestProject
             // log = Substitute.For<Logging>();
              //file = Substitute.For<ILogFile>();
               _uut= new Logging();
-
-              
-
         }
 
-        [Test]
-        public void CanItRunMoreThanOnce()
-        {
-           ILogging uut = Substitute.For<ILogging>();
-            var counter = 0;
-
-            
-            uut.When(x => x.Log(DateTime.Today, 1, "Test")).Do(x => counter++);
-            
-
-            uut.Log(DateTime.Today, 1, "Test");
-            uut.Log(DateTime.Today, 1, "Test");
-            
-            Assert.AreEqual(2, counter);
-        }
-
+       
         [Test]
         public void CanLog()
         {
@@ -76,6 +58,26 @@ namespace Nunit.TestProject
             }
             Assert.That(text == DateTime.Today.ToString() +": "+ "1: test");
 
+
+
+
         }
+
+        [Test]
+        public void CanItRunMoreThanOnce()
+        {
+            ILogging uut = Substitute.For<ILogging>();
+            var counter = 0;
+
+            
+            uut.When(x => x.Log(DateTime.Today, 1, "Test")).Do(x => counter++);
+            
+
+            uut.Log(DateTime.Today, 1, "Test");
+            uut.Log(DateTime.Today, 1, "Test");
+            
+            Assert.AreEqual(2, counter);
+        }
+
     }
 }

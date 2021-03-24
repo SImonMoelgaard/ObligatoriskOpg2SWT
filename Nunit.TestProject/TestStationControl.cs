@@ -139,7 +139,7 @@ namespace Nunit.TestProject
             //_UsbCharger.Connected = true;
 
             _RFID.RfidChangedEvent += Raise.EventWith(this, new RFIDEventArgs() { Id =1 });
-            _display.Received(1).PrintMessage("ID godkendt: 1 Ladning stoppet. Fjern telefon");
+            _display.Received(1).PrintMessage("ID godkendt: 1 Ladning stoppet. Åben venligst døren, Fjern telefonen og luk døren efter Dem");
 
         }
         [Test]

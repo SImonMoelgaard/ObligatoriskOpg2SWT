@@ -117,7 +117,7 @@ namespace Ladeskab
                 if (rfid.Id == _oldID)
                 {
                     _chargeControl.StopCharging();
-                    message = $"ID godkendt: {rfid.Id} Ladning stoppet. Fjern telefon";
+                    message = $"ID godkendt: {rfid.Id} Ladning stoppet. Åben venligst døren, Fjern telefonen og luk døren efter Dem";
                     _logging.Log(TimeStamp, _oldID, message);
                     _door.UnlockDoor();
                     _state = ChargingStationState.Available;
