@@ -162,7 +162,7 @@ namespace Nunit.TestProject
         [Test]
         public void InvalidChargingValueThree()
         {
-            Assert.Throws<InvalidOperationException>(() => _UsbCharger.CurrentValueEvent += Raise.EventWith(this, new CurrentEventArgs() { Current = -1 }));
+            Assert.Throws<InvalidOperationException>(() => _UsbCharger.CurrentValueEvent += Raise.EventWith(this, new CurrentEventArgs() { Current = 0 }));
         }
 
         [Test]
