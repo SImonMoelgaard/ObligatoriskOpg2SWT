@@ -192,10 +192,7 @@ namespace Ladeskab
                 {
                     message = "Telefon oplader";
                 }
-                else
-                {
-                    throw new InvalidOperationException();
-                }
+               
 
                 _display.PrintMessage(message);
 
