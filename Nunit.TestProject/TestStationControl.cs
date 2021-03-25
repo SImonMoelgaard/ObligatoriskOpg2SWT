@@ -166,15 +166,15 @@ namespace Nunit.TestProject
         }
 
         [Test]
-        public void ChargingPhone_Done()
+        public void ChargingPhone_Done_with1()
         {
 
-            _UsbCharger.CurrentValueEvent += Raise.EventWith(this, new CurrentEventArgs() {Current = 0});
+            _UsbCharger.CurrentValueEvent += Raise.EventWith(this, new CurrentEventArgs() {Current = 1});
             _display.Received(1).PrintMessage("Telefon opladet");
         }
 
         [Test]
-        public void ChargingPhone_Done()
+        public void ChargingPhone_Done_with5()
         {
 
             _UsbCharger.CurrentValueEvent += Raise.EventWith(this, new CurrentEventArgs() {Current = 5});
