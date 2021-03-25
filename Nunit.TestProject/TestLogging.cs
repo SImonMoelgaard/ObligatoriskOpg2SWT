@@ -57,9 +57,28 @@ namespace Nunit.TestProject
                 text = reader.ReadLine();
             }
             Assert.That(text == DateTime.Today.ToString() +": "+ "1: test");
+        }
 
+        [Test]
+        public void WriteToFile_SeveralLine()
+        {
 
+            if (File.Exists(logFileName))
+            {
+                File.Delete(logFileName);
+            }
 
+            _uut.Log(DateTime.Today, 1, "test");
+            _uut.Log(DateTime.Today, 2, "test2");
+            _uut.Log(DateTime.Today, 3, "test3");
+
+            DateTime time = DateTime.Today;
+            string text;
+            using (StreamReader reader = new StreamReader(File.OpenRead(logFileName)))
+            {
+                text = reader.ReadToEnd();
+            }
+            Assert.That(text == DateTime.Today.ToString() + ": " + "1: test"+ "\r\n" + DateTime.Today.ToString() + ": " + "2: test2"+ "\r\n" + DateTime.Today.ToString() + ": " + "3: test3\r\n");
 
         }
 
