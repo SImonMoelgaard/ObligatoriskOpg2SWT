@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Text;
 using UsbSimulator;
 
@@ -46,6 +47,10 @@ namespace ClassLibrary.UsbObserver
                 else if (Watt > 500)
                 {
                     StartCharging();
+                }
+                else
+                {
+                    throw new InvalidOperationException();
                 }
             
            
