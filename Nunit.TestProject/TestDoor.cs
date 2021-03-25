@@ -15,9 +15,6 @@ namespace Nunit.TestProject
         public void Setup()
         { 
             _uut = new Door();
-
-           
-
         }
 
 
@@ -31,11 +28,27 @@ namespace Nunit.TestProject
         }
 
         [Test]
+        public void CloseDoor_DoorAlreadyClosed()
+        {
+            _uut.isDoorClosed = true;
+            _uut.CloseDoor();
+            Assert.That(_uut.isDoorClosed, Is.EqualTo(true));
+        }
+
+        [Test]
         public void OpenDoor()
         {
             _uut.isDoorClosed = true;
             _uut.OpenDoor();
             Assert.That(_uut.isDoorClosed, Is.EqualTo(false) );
+        }
+
+        [Test]
+        public void OpenDoor_DoorAlreadyOpen()
+        {
+            _uut.isDoorClosed = false;
+            _uut.OpenDoor();
+            Assert.That(_uut.isDoorClosed, Is.EqualTo(false));
         }
 
         [Test]
