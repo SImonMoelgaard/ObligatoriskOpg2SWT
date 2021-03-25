@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Text;
 using ClassLibrary.DoorObserver;
 
@@ -62,8 +63,6 @@ namespace ClassLibrary
             if (!IsDoorLocked && isDoorClosed)
             {
                 IsDoorLocked = true;
-                
-                
             }
 
         }

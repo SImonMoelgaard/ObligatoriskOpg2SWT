@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using ClassLibrary;
 using ClassLibrary.DoorObserver;
@@ -14,7 +15,6 @@ namespace Nunit.TestProject
         public void Setup()
         { 
             _uut = new Door();
-
         }
 
 
@@ -28,11 +28,27 @@ namespace Nunit.TestProject
         }
 
         [Test]
+        public void CloseDoor_DoorAlreadyClosed()
+        {
+            _uut.isDoorClosed = true;
+            _uut.CloseDoor();
+            Assert.That(_uut.isDoorClosed, Is.EqualTo(true));
+        }
+
+        [Test]
         public void OpenDoor()
         {
             _uut.isDoorClosed = true;
             _uut.OpenDoor();
             Assert.That(_uut.isDoorClosed, Is.EqualTo(false) );
+        }
+
+        [Test]
+        public void OpenDoor_DoorAlreadyOpen()
+        {
+            _uut.isDoorClosed = false;
+            _uut.OpenDoor();
+            Assert.That(_uut.isDoorClosed, Is.EqualTo(false));
         }
 
         [Test]
@@ -50,6 +66,15 @@ namespace Nunit.TestProject
             _uut.LockDoor();
             Assert.That(_uut.IsDoorLocked, Is.EqualTo(true));
         }
+
+        [Test]
+        public void LockDoor_DoorAlreadyLocked()
+        {
+            _uut.IsDoorLocked = true;
+            _uut.isDoorClosed = true;
+            _uut.LockDoor();
+            Assert.That(_uut.IsDoorLocked, Is.EqualTo(true));
+        }
         [Test]
         public void UnlockDoor()
         {
@@ -57,8 +82,12 @@ namespace Nunit.TestProject
             _uut.UnlockDoor();
             Assert.That(_uut.IsDoorLocked, Is.EqualTo(false));
         }
-        
-        
-
+        [Test]
+        public void UnlockDoor_DoorAlreadyUnlocked()
+        {
+            _uut.IsDoorLocked = false;
+            _uut.UnlockDoor();
+            Assert.That(_uut.IsDoorLocked, Is.EqualTo(false));
+        }
     }
 }

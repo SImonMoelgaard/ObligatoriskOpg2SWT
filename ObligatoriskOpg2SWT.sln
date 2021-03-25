@@ -3,11 +3,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31019.35
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Consoleapplication", "Consoleapplication\Consoleapplication.csproj", "{0609F474-E426-4A41-A402-3A157029E952}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Consoleapplication", "Consoleapplication\Consoleapplication.csproj", "{0609F474-E426-4A41-A402-3A157029E952}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary", "ClassLibrary\ClassLibrary.csproj", "{59780C16-32BA-4113-996A-9F8164BB950C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassLibrary", "ClassLibrary\ClassLibrary.csproj", "{59780C16-32BA-4113-996A-9F8164BB950C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nunit.TestProject", "Nunit.TestProject\Nunit.TestProject.csproj", "{93E37F87-D61D-4BBE-BCC0-E1B2AD86E781}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nunit.TestProject", "Nunit.TestProject\Nunit.TestProject.csproj", "{93E37F87-D61D-4BBE-BCC0-E1B2AD86E781}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Diagrammer", "Diagrammer", "{BA47BA77-EA5D-42D7-81D2-9A42CDE4308C}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\Desktop\Diagrammer.pdf = ..\..\..\Desktop\Diagrammer.pdf
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

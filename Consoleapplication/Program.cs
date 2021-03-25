@@ -1,4 +1,5 @@
 ﻿    using System;
+    using System.Runtime.CompilerServices;
     using ClassLibrary;
     using ClassLibrary.Display;
     using ClassLibrary.DoorObserver;
@@ -13,13 +14,17 @@
     {
         static void Main(string[] args)
         {
+
+            
             // Assemble your system here from all the classes
             IDoor door = new Door();
             IRFIDReader rfidReader = new RfidReader();
             IUsbCharger usbcharger = new UsbChargerSimulator();
             ChargeControl chargeControl = new ChargeControl(usbcharger);
             IDisplay display = new Display();
+            
             ILogging Log = new Logging();
+            
 
             StationControl stationcontroller = new StationControl(display, door, rfidReader, usbcharger, chargeControl, Log);
 

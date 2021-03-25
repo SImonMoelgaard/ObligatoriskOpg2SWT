@@ -117,7 +117,7 @@ namespace Ladeskab
                 if (rfid.Id == _oldID)
                 {
                     _chargeControl.StopCharging();
-                    message = $"ID godkendt: {rfid.Id} Ladning stoppet. Fjern telefon";
+                    message = $"ID godkendt: {rfid.Id} Ladning stoppet. Åben venligst døren, Fjern telefonen og luk døren efter Dem";
                     _logging.Log(TimeStamp, _oldID, message);
                     _door.UnlockDoor();
                     _state = ChargingStationState.Available;
@@ -183,15 +183,21 @@ namespace Ladeskab
         private void ChargerHandle(object o, CurrentEventArgs charger)
         {
             Watt = charger.Current;
-            if (Watt >0&&Watt<=5)
-            {
-                message = "Telefon opladet";
-            }
-            else if (Watt>=6)
-            {
-                message = "Telefon oplader";
-            }
-            _display.PrintMessage(message);
+
+                if (Watt > 0 && Watt <= 5)
+                {
+                    message = "Telefon opladet";
+                }
+                else if (Watt > 500)
+                {
+                    message = "Telefon oplader";
+                }
+                else
+                {
+                    throw new InvalidOperationException();
+                }
+
+                _display.PrintMessage(message);
 
         }
     }

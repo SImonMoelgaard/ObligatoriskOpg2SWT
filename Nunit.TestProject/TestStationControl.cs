@@ -9,6 +9,7 @@ using ClassLibrary.Logging;
 using ClassLibrary.RFIDObserver;
 using ClassLibrary.UsbObserver;
 using Ladeskab;
+using Microsoft.VisualStudio.TestPlatform.ObjectModel;
 using NUnit.Framework;
 using UsbSimulator;
 using NSubstitute;
@@ -28,7 +29,7 @@ namespace Nunit.TestProject
         private ChargeControl _CC;
 
         [SetUp]
-        public void setup()
+        public void Setup()
         {
             _display = Substitute.For<IDisplay>();
             _door = Substitute.For<IDoor>();
@@ -41,7 +42,6 @@ namespace Nunit.TestProject
         }
 
         //Test af Handle Door
-
         [Test]
         public void DoorGetsClosed_UsbChargerConnected()
         {
@@ -140,7 +140,7 @@ namespace Nunit.TestProject
             //_UsbCharger.Connected = true;
 
             _RFID.RfidChangedEvent += Raise.EventWith(this, new RFIDEventArgs() { Id =1 });
-            _display.Received(1).PrintMessage("ID godkendt: 1 Ladning stoppet. Fjern telefon");
+            _display.Received(1).PrintMessage("ID godkendt: 1 Ladning stoppet. Åben venligst døren, Fjern telefonen og luk døren efter Dem");
 
         }
         [Test]
@@ -170,13 +170,31 @@ namespace Nunit.TestProject
         public void ChargingPhone()
         {
 
-            _UsbCharger.CurrentValueEvent += Raise.EventWith(this, new CurrentEventArgs() { Current = 6 });
+            _UsbCharger.CurrentValueEvent += Raise.EventWith(this, new CurrentEventArgs() { Current = 501 });
             _display.Received(1).PrintMessage("Telefon oplader");
         }
 
         [Test]
+        public void InvalidChargingValue()
+        {
+            Assert.Throws<InvalidOperationException>(()=>_UsbCharger.CurrentValueEvent += Raise.EventWith(this, new CurrentEventArgs() { Current = 500 }));
+        }
+
+        [Test]
+        public void InvalidChargingValueTwo()
+        {
+            Assert.Throws<InvalidOperationException>(() => _UsbCharger.CurrentValueEvent += Raise.EventWith(this, new CurrentEventArgs() { Current = 6 }));
+        }
+
+        [Test]
+        public void InvalidChargingValueThree()
+        {
+            Assert.Throws<InvalidOperationException>(() => _UsbCharger.CurrentValueEvent += Raise.EventWith(this, new CurrentEventArgs() { Current = -1 }));
+        }
+
+        [Test]
        
-        public void ChargingPhonetest()
+        public void WattGet()
         {
 
             _UsbCharger.CurrentValueEvent += Raise.EventWith(this, new CurrentEventArgs() { Current = 550 });
@@ -213,7 +231,7 @@ namespace Nunit.TestProject
             _uut.TimeStamp = testtime;
             Assert.That(_uut.TimeStamp, Is.EqualTo(testtime));
         }
-
+      
 
     }
 }
