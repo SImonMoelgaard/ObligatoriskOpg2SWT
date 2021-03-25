@@ -160,18 +160,31 @@ namespace Nunit.TestProject
 
         //Test af ChargerHandle
         [Test]
+        public void InvalidChargingValueThree()
+        {
+            Assert.Throws<InvalidOperationException>(() => _UsbCharger.CurrentValueEvent += Raise.EventWith(this, new CurrentEventArgs() { Current = -1 }));
+        }
+
+        [Test]
+        public void ChargingPhone_Done()
+        {
+
+            _UsbCharger.CurrentValueEvent += Raise.EventWith(this, new CurrentEventArgs() {Current = 0});
+            _display.Received(1).PrintMessage("Telefon opladet");
+        }
+
+        [Test]
         public void ChargingPhone_Done()
         {
 
             _UsbCharger.CurrentValueEvent += Raise.EventWith(this, new CurrentEventArgs() {Current = 5});
             _display.Received(1).PrintMessage("Telefon opladet");
         }
+        
         [Test]
-        public void ChargingPhone()
+        public void InvalidChargingValueTwo()
         {
-
-            _UsbCharger.CurrentValueEvent += Raise.EventWith(this, new CurrentEventArgs() { Current = 501 });
-            _display.Received(1).PrintMessage("Telefon oplader");
+            Assert.Throws<InvalidOperationException>(() => _UsbCharger.CurrentValueEvent += Raise.EventWith(this, new CurrentEventArgs() { Current = 6 }));
         }
 
         [Test]
@@ -181,19 +194,14 @@ namespace Nunit.TestProject
         }
 
         [Test]
-        public void InvalidChargingValueTwo()
+        public void ChargingPhone()
         {
-            Assert.Throws<InvalidOperationException>(() => _UsbCharger.CurrentValueEvent += Raise.EventWith(this, new CurrentEventArgs() { Current = 6 }));
+
+            _UsbCharger.CurrentValueEvent += Raise.EventWith(this, new CurrentEventArgs() { Current = 501 });
+            _display.Received(1).PrintMessage("Telefon oplader");
         }
 
         [Test]
-        public void InvalidChargingValueThree()
-        {
-            Assert.Throws<InvalidOperationException>(() => _UsbCharger.CurrentValueEvent += Raise.EventWith(this, new CurrentEventArgs() { Current = -1 }));
-        }
-
-        [Test]
-       
         public void WattGet()
         {
 
