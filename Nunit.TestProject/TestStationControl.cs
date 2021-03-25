@@ -9,7 +9,6 @@ using ClassLibrary.Logging;
 using ClassLibrary.RFIDObserver;
 using ClassLibrary.UsbObserver;
 using Ladeskab;
-using Microsoft.VisualStudio.TestPlatform.ObjectModel;
 using NUnit.Framework;
 using UsbSimulator;
 using NSubstitute;
@@ -170,26 +169,8 @@ namespace Nunit.TestProject
         public void ChargingPhone()
         {
 
-            _UsbCharger.CurrentValueEvent += Raise.EventWith(this, new CurrentEventArgs() { Current = 501 });
+            _UsbCharger.CurrentValueEvent += Raise.EventWith(this, new CurrentEventArgs() { Current = 6 });
             _display.Received(1).PrintMessage("Telefon oplader");
-        }
-
-        [Test]
-        public void InvalidChargingValue()
-        {
-            Assert.Throws<InvalidOperationException>(()=>_UsbCharger.CurrentValueEvent += Raise.EventWith(this, new CurrentEventArgs() { Current = 500 }));
-        }
-
-        [Test]
-        public void InvalidChargingValueTwo()
-        {
-            Assert.Throws<InvalidOperationException>(() => _UsbCharger.CurrentValueEvent += Raise.EventWith(this, new CurrentEventArgs() { Current = 6 }));
-        }
-
-        [Test]
-        public void InvalidChargingValueThree()
-        {
-            Assert.Throws<InvalidOperationException>(() => _UsbCharger.CurrentValueEvent += Raise.EventWith(this, new CurrentEventArgs() { Current = -1 }));
         }
 
         [Test]
