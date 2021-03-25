@@ -42,9 +42,21 @@ namespace Nunit.TestProject
         public void RFIDGet()
         {
             _uut.CardID = 10;
-            
-
             Assert.That(RFIDEvent.Id, Is.EqualTo(10));
+        }
+
+        [Test]
+        public void RFIDGet_FalseValue_11()
+        {
+            _uut.CardID = 10;
+            Assert.That(RFIDEvent.Id, Is.Not.EqualTo(11));
+        }
+
+        [Test]
+        public void RFIDGet_FalseValue_9()
+        {
+            _uut.CardID = 10;
+            Assert.That(RFIDEvent.Id, Is.Not.EqualTo(11));
         }
 
         [Test]
