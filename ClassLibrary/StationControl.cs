@@ -183,21 +183,15 @@ namespace Ladeskab
         private void ChargerHandle(object o, CurrentEventArgs charger)
         {
             Watt = charger.Current;
-
-                if (Watt > 0 && Watt <= 5)
-                {
-                    message = "Telefon opladet";
-                }
-                else if (Watt > 500)
-                {
-                    message = "Telefon oplader";
-                }
-                else
-                {
-                    throw new InvalidOperationException();
-                }
-
-                _display.PrintMessage(message);
+            if (Watt >0&&Watt<=5)
+            {
+                message = "Telefon opladet";
+            }
+            else if (Watt>=6)
+            {
+                message = "Telefon oplader";
+            }
+            _display.PrintMessage(message);
 
         }
     }

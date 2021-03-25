@@ -36,9 +36,10 @@ namespace Nunit.TestProject
         {
             var counter = 0;
             _uut = Substitute.For<IDisplay>();
-            
-            _uut.When(x => x.PrintMessage("Test")).Do(x => counter++);
-           
+
+            _uut.When(x => x.PrintMessage("Test")).
+                Do(x => counter++);
+
 
             _uut.PrintMessage("Test");
             _uut.PrintMessage("Test");
