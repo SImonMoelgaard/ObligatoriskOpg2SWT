@@ -66,6 +66,15 @@ namespace Nunit.TestProject
             _uut.LockDoor();
             Assert.That(_uut.IsDoorLocked, Is.EqualTo(true));
         }
+
+        [Test]
+        public void LockDoor_DoorAlreadyLocked()
+        {
+            _uut.IsDoorLocked = true;
+            _uut.isDoorClosed = true;
+            _uut.LockDoor();
+            Assert.That(_uut.IsDoorLocked, Is.EqualTo(true));
+        }
         [Test]
         public void UnlockDoor()
         {
@@ -73,6 +82,12 @@ namespace Nunit.TestProject
             _uut.UnlockDoor();
             Assert.That(_uut.IsDoorLocked, Is.EqualTo(false));
         }
-
+        [Test]
+        public void UnlockDoor_DoorAlreadyUnlocked()
+        {
+            _uut.IsDoorLocked = false;
+            _uut.UnlockDoor();
+            Assert.That(_uut.IsDoorLocked, Is.EqualTo(false));
+        }
     }
 }
