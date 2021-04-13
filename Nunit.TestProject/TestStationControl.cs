@@ -245,6 +245,13 @@ namespace Nunit.TestProject
             _RFID.RfidChangedEvent += Raise.EventWith(this, new RFIDEventArgs(){Id = 5});
             Assert.That(_uut.oldID, Is.EqualTo(5));
         }
+        public void TEstOldIDSet()
+        {
+            _uut.oldID = 5;
+            
+            Assert.That(_uut.oldID, Is.EqualTo(5));
+        }
+
 
         [Test]
         public void TestGetChargingstationState()
