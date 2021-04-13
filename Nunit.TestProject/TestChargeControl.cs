@@ -50,8 +50,6 @@ namespace Nunit.TestProject
         [Test]
         public void ChargeHandleEventWith6()
         {
-            _usbCharger.StopCharge();
-            _usbCharger.Connected = true;
             _usbCharger.CurrentValueEvent += Raise.EventWith(this, new CurrentEventArgs() {Current = 100});
             Assert.That(_usbCharger.CurrentValue, Is.GreaterThan(500));
         }
