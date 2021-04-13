@@ -44,7 +44,7 @@ namespace ClassLibrary.UsbObserver
                 {
                     StopCharging();
                 }
-                else if (Watt > 500)
+                else if (Watt >=5 && Watt <= 500)
                 {
                     StartCharging();
                 }

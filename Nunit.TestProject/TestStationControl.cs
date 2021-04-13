@@ -172,13 +172,24 @@ namespace Nunit.TestProject
             _display.Received(1).PrintMessage("RFID fejl. Prøv igen");
 
         }
-
+        
         //Test af ChargerHandle
+
+
+     
+        [Test]
+        public void InvalidChargingValueTwo()
+        {
+            Assert.Throws<InvalidOperationException>(() => _UsbCharger.CurrentValueEvent += Raise.EventWith(this, new CurrentEventArgs() { Current = -1 }));
+        }
+
         [Test]
         public void InvalidChargingValuewith0()
         {
             Assert.Throws<InvalidOperationException>(() => _UsbCharger.CurrentValueEvent += Raise.EventWith(this, new CurrentEventArgs() { Current = 0 }));
         }
+
+       
 
         [Test]
         public void ChargingPhone_Done_with1()
@@ -196,25 +207,30 @@ namespace Nunit.TestProject
             _display.Received(1).PrintMessage("Telefon opladet");
         }
         
+      
         [Test]
-        public void InvalidChargingValueTwo()
+        public void ChargingPhone_Done_with6()
         {
-            Assert.Throws<InvalidOperationException>(() => _UsbCharger.CurrentValueEvent += Raise.EventWith(this, new CurrentEventArgs() { Current = 6 }));
+            _UsbCharger.CurrentValueEvent += Raise.EventWith(this, new CurrentEventArgs() {Current = 6});
+            _display.Received(1).PrintMessage("Telefon oplader");
+        }
+       
+        [Test]
+        public void ChargingPhone_Done_with500()
+        {
+            _UsbCharger.CurrentValueEvent += Raise.EventWith(this, new CurrentEventArgs() {Current = 500});
+            _display.Received(1).PrintMessage("Telefon oplader");
         }
 
         [Test]
         public void InvalidChargingValue()
         {
-            Assert.Throws<InvalidOperationException>(()=>_UsbCharger.CurrentValueEvent += Raise.EventWith(this, new CurrentEventArgs() { Current = 500 }));
+            
+
+            Assert.Throws<InvalidOperationException>(()=>_UsbCharger.CurrentValueEvent += Raise.EventWith(this, new CurrentEventArgs() { Current = 501 }));
         }
 
-        [Test]
-        public void ChargingPhone()
-        {
 
-            _UsbCharger.CurrentValueEvent += Raise.EventWith(this, new CurrentEventArgs() { Current = 501 });
-            _display.Received(1).PrintMessage("Telefon oplader");
-        }
 
         
         
@@ -223,8 +239,8 @@ namespace Nunit.TestProject
         public void WattGet()
         {
 
-            _UsbCharger.CurrentValueEvent += Raise.EventWith(this, new CurrentEventArgs() { Current = 550 });
-            Assert.That(_uut.Watt, Is.EqualTo(550));
+            _UsbCharger.CurrentValueEvent += Raise.EventWith(this, new CurrentEventArgs() { Current = 50 });
+            Assert.That(_uut.Watt, Is.EqualTo(50));
         }
 
         [Test]

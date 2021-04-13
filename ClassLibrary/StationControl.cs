@@ -188,9 +188,13 @@ namespace Ladeskab
                 {
                     message = "Telefon opladet";
                 }
-                else if (Watt > 500)
+                else if (Watt >= 6 && Watt <= 500)
                 {
                     message = "Telefon oplader";
+                }
+                else if (Watt >= 501)
+                {
+                    message = "Fejl";
                 }
                
 
