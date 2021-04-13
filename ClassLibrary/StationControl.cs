@@ -43,7 +43,7 @@ namespace Ladeskab
 
 
         public StationControl(IDisplay display, IDoor door, IRFIDReader rfid, IUsbCharger usbcharger,
-            ChargeControl chargeControl, ILogging logging)
+            IChargeControl chargeControl, ILogging logging)
         {
             _display = display;
             _door = door;

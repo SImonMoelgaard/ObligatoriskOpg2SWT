@@ -26,7 +26,7 @@ namespace Nunit.TestProject
         private IDoor _door;
         private IRFIDReader _RFID;
         private IUsbCharger _UsbCharger;
-        private ChargeControl _CC;
+        private IChargeControl _CC;
 
         [SetUp]
         public void Setup()
@@ -35,7 +35,7 @@ namespace Nunit.TestProject
             _door = Substitute.For<IDoor>();
             _RFID = Substitute.For<IRFIDReader>();
             _UsbCharger = Substitute.For<IUsbCharger>();
-            _CC = new ChargeControl(_UsbCharger);
+            _CC = Substitute.For<IChargeControl>();
             _log = Substitute.For<ILogging>();
             _uut = new StationControl(_display, _door,_RFID,_UsbCharger, _CC, _log);
             
