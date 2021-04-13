@@ -175,22 +175,6 @@ namespace Nunit.TestProject
         
         //Test af ChargerHandle
 
-
-
-        [Test]
-        public void InvalidChargingValueTwo()
-        {
-            Assert.Throws<InvalidOperationException>(() => _UsbCharger.CurrentValueEvent += Raise.EventWith(this, new CurrentEventArgs() { Current = -1 }));
-        }
-
-        [Test]
-        public void InvalidChargingValuewith0()
-        {
-            Assert.Throws<InvalidOperationException>(() => _UsbCharger.CurrentValueEvent += Raise.EventWith(this, new CurrentEventArgs() { Current = 0 }));
-        }
-
-       
-
         [Test]
         public void ChargingPhone_Done_with1()
         {
@@ -221,20 +205,7 @@ namespace Nunit.TestProject
             _UsbCharger.CurrentValueEvent += Raise.EventWith(this, new CurrentEventArgs() {Current = 500});
             _display.Received(1).PrintMessage("Telefon oplader");
         }
-
-        [Test]
-        public void InvalidChargingValue()
-        {
-            
-
-            Assert.Throws<InvalidOperationException>(()=>_UsbCharger.CurrentValueEvent += Raise.EventWith(this, new CurrentEventArgs() { Current = 501 }));
-        }
-
-
-
         
-        
-
         [Test]
         public void WattGet()
         {
