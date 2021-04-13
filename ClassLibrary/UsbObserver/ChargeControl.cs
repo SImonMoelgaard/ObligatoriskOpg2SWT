@@ -37,11 +37,11 @@ namespace ClassLibrary.UsbObserver
         {
             
              Watt = chargingEvent.Current;
-                if (Watt >0 && Watt<=5)
+                if (Watt >=0 && Watt<=5)
                 {
                     StopCharging();
                 }
-                else if (Watt >=5 && Watt <= 500)
+                else if (Watt >=6 && Watt <= 500)
                 {
                     StartCharging();
                 }

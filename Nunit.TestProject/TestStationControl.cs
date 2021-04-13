@@ -176,7 +176,7 @@ namespace Nunit.TestProject
         //Test af ChargerHandle
 
 
-     
+
         [Test]
         public void InvalidChargingValueTwo()
         {
