@@ -132,7 +132,13 @@ namespace Nunit.TestProject
         [Test]
         public void UnlockCheck_Ischarging_ID_oldID_right()
         {
-            _uut.oldID = 1;
+            _uut.state = StationControl.ChargingStationState.Available;
+            _uut.charging = false;
+            _UsbCharger.Connected = true;
+            _door.isDoorClosed = true;
+            
+            _RFID.RfidChangedEvent += Raise.EventWith(this, new RFIDEventArgs(){Id = 1});
+
             _uut.charging = true;
             _uut.state = StationControl.ChargingStationState.Available;
             
@@ -146,7 +152,16 @@ namespace Nunit.TestProject
         [Test]
         public void UnlockCheck_Ischarging_ID_oldID_Wrong()
         {
-            _uut.oldID = 2;
+
+            _uut.state = StationControl.ChargingStationState.Available;
+            _uut.charging = false;
+            _UsbCharger.Connected = true;
+            _door.isDoorClosed = true;
+            
+            _RFID.RfidChangedEvent += Raise.EventWith(this, new RFIDEventArgs(){Id = 2});
+
+
+            //_uut.oldID = 2;
             _uut.charging = true;
             _uut.state = StationControl.ChargingStationState.Available;
 
@@ -222,8 +237,12 @@ namespace Nunit.TestProject
         [Test]
         public void TEstOldIDGet()
         {
-            _uut.oldID = 5;
-
+            _uut.state = StationControl.ChargingStationState.Available;
+            _uut.charging = false;
+            _UsbCharger.Connected = true;
+            _door.isDoorClosed = true;
+            
+            _RFID.RfidChangedEvent += Raise.EventWith(this, new RFIDEventArgs(){Id = 5});
             Assert.That(_uut.oldID, Is.EqualTo(5));
         }
 
