@@ -20,7 +20,7 @@ namespace Ladeskab
         private IDoor _door;
         private IRFIDReader _rfid;
         private IUsbCharger _usbCharger;
-        private ChargeControl _chargeControl;
+        private IChargeControl _chargeControl;
         private ILogging _logging;
 
         private ChargingStationState _state;

@@ -7,7 +7,7 @@ using UsbSimulator;
 
 namespace ClassLibrary.UsbObserver
 {
-    public class ChargeControl
+    public class ChargeControl : IChargeControl
     {
         
 
@@ -35,9 +35,6 @@ namespace ClassLibrary.UsbObserver
 
         public void ChargeHandleEvent(object sender, CurrentEventArgs chargingEvent)
         {
-
-
-           
             
              Watt = chargingEvent.Current;
                 if (Watt >0 && Watt<=5)
@@ -53,8 +50,6 @@ namespace ClassLibrary.UsbObserver
                     throw new InvalidOperationException();
                 }
             
-           
-           
         }
 
     }
